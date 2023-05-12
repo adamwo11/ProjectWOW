@@ -7,13 +7,15 @@ CREATE TABLE char(
     realm TEXT,
     level integer NOT NULL,
     gender TEXT,
-    class TEXT,
+    classes TEXT,
     race TEXT,
     faction TEXT
 );
+DROP TABLE char;
 
  CREATE TABLE users(
   id SERIAL PRIMARY KEY,
-  email TEXT,
+  user_name TEXT,
   password_digest TEXT
 );
+DROP TABLE users;

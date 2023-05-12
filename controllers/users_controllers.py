@@ -5,8 +5,7 @@ def new():
   return render_template('users/new.html')
 
 def create():
-
-  email = request.form.get('email')
+  user_name = request.form.get('user_name')
   password = request.form.get('password')
-  create_user(email, password)
-  return redirect('/')
+  create_user(user_name, password)
+  

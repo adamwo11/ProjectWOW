@@ -1,14 +1,14 @@
 from flask import render_template, request, redirect, session
-from models.users import find_user_by_email
+from models.users import find_user_by_user_name
 import bcrypt
 
 def new():
   return render_template('sessions/new.html')
 
 def create():
-  email = request.form.get('email')
+  user_name = request.form.get('user_name')
   password = request.form.get('password')
-  user = find_user_by_email(email)
+  user = find_user_by_user_name(user_name)
   if user == None:
     return redirect('/sessions/new')
   

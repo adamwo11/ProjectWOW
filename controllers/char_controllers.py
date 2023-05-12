@@ -10,15 +10,15 @@ def get_char_from_api(realm, char_name):
 
 def index():
   char = all_chars()
-  return render_template('char/index.html')
-# , current_user=current_user
+  return render_template('char/index.html', char=char, current_user=current_user)
+
 def new():
-  return render_template('char/new.html')
+  return render_template('char/generate.html')
 
 def create():
   char_name = request.form.get('name')
   realm = request.form.get('realm')
-  create_char(id, realm, char_name)
+  create_char(id, char_name, realm)
   return redirect('/')
 
 # def edit(id):

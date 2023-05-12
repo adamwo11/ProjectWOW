@@ -1,12 +1,12 @@
 from db.db import sql
 import bcrypt
 
-def create_user(email, password):
+def create_user(user_name, password):
   password_digest = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-  sql('INSERT INTO users(email, password_digest) VALUES(%s, %s) RETURNING *', [email, password_digest])
+  sql('INSERT INTO users(user_name, password_digest) VALUES(%s, %s) RETURNING *', [user_name, password_digest])
 
-def find_user_by_email(email):
-  users = sql('SELECT * FROM users WHEREemail = %s', [email])
+def find_user_by_user_name(user_name):
+  users = sql('SELECT * FROM users WHERE users_name = %s', [user_name])
   # if one or more users is found:
   if len(users) > 0:
     return users[0] # return the first user.

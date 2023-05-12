@@ -1,15 +1,31 @@
 
 {% block content %}
-<form action="/char"></form>
+<form action="/char">
 <h1>WOW</h1>
+
 <a href="/users/new">Sign up</a>
-<form action="/sessions/new">
-<label for="">Email:</label>
-<input type="text" name="email">
 
-<label for="">Password:</label>
-<input type="password" name="password">
-
-<button>Log in</button>
+<form action="/char/generate">
+    <label for="">Username:</label>
+    <input type="text" name="user_name">
+    <label for="">Password:</label>
+    <input type="password" name="password">
+    <button>Log in</button>
 </form>
+
+ 
+    <section class="char">
+        <li>Name: {{ char['name'] }}</li>
+        <li>Realm: {{ char['realm'] }}</li>
+        <li>Level: {{ char['level'] }}</li>
+        <li>Gender: {{ char['gender'] }}</li>
+        <li>Class: {{ char['class'] }}</li>
+        <li>Race: {{ char['race'] }}</li>
+        <li>Faction: {{ char['faction'] }}</li>
+    </section>
+  
+</section>
+</form>
+
+   
 {% endblock %}
