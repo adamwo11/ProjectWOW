@@ -8,4 +8,4 @@ def create():
   user_name = request.form.get('user_name')
   password = request.form.get('password')
   create_user(user_name, password)
-  
+  return redirect('/')

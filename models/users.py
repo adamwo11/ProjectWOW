@@ -6,13 +6,13 @@ def create_user(user_name, password):
   sql('INSERT INTO users(user_name, password_digest) VALUES(%s, %s) RETURNING *', [user_name, password_digest])
 
 def find_user_by_user_name(user_name):
-  users = sql('SELECT * FROM users WHERE users_name = %s', [user_name])
+  users = sql('SELECT * FROM users WHERE user_name = %s', [user_name])
   # if one or more users is found:
   if len(users) > 0:
     return users[0] # return the first user.
   else:
     return None
 
-def find_user_by_id(id):
+def find_user_by_user_name(id):
   users = sql('SELECT * FROM users WHERE id = %s', [id])
   return users[0]

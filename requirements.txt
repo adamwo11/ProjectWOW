@@ -1,4 +1,4 @@
-Flask
+flask
 bcrypt
 psycopg2-binary
 # psycopg2.extras
