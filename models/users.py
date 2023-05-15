@@ -9,10 +9,13 @@ def find_user_by_user_name(user_name):
   users = sql('SELECT * FROM users WHERE user_name = %s', [user_name])
   # if one or more users is found:
   if len(users) > 0:
+
     return users[0] # return the first user.
   else:
     return None
 
-def find_user_by_user_name(id):
+def find_user_by_id(id):
   users = sql('SELECT * FROM users WHERE id = %s', [id])
+  print(users)
+  print('woof')
   return users[0]

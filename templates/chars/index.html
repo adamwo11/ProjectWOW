@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>WOW</h1>
+{% if current_user %}
+
+<h3>Welcome to my website {{ current_user['user_name'] }}!</h3>
+<section class="controls">
+    <form action="/sessions/delete" method="POST">
+        <button>Log out</button>
+    </form>   
+    <a href="/char/generate">Add Character</a>
+</section>
+<section class="chars">
+    {% for char in chars: %}
+    <section class="char">
+        <section class="controls">
+            <a href="/char/{{ char['id'] }}/edit">Edit</a>
+    
+            <form action="/char/{{ char['id'] }}/delete" method="POST">
+              <button>Delete</button>
+            </form>
+    
+            <form action="/char/{{ char['id'] }}/likes" method="POST">
+              <button>Like</button>
+            </form>
+          </section>
+        <li>Name: {{ char['name'] }}</li>
+        <li>Realm: {{ char['realm'] }}</li>
+        
+        <li>Level: {{ char['level'] }}</li>
+        <img src="{{ char['img_url'] }}" alt="">
+        <li>Gender: {{ char['gender'] }}</li>
+        <li>Class: {{ char['class'] }}</li>
+        <li>Race: {{ char['race'] }}</li>
+        <li>Faction: {{ char['faction'] }}</li>
+        <p></p>
+    </section>
+    {% endfor %}
+</section>
+</form>
+
+{% else %}
+<a href="/users/new">Sign up</a>
+
+    <form action="/sessions/create" method="POST">
+        <label for="">Username:</label>
+        <input type="text" name="user_name">
+        <label for="">Password:</label>
+        <input type="password" name="password">
+        <button>Log in</button>
+    </form>
+
+{% endif %}
+
+
+   
+{% endblock %}

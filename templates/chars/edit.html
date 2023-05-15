@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Edit Character</h1>
+<form action="/char/{{ char['id'] }}" method="POST">
+    <label for="">Name:</label>
+    <input type="text" name="name" value="{{ char['name'] }}">
+    <label for="">Realm:</label>
+    <input type="text" name="realm" value="{{ char['realm'] }}">
+    <label for="">Level:</label>
+    <input type="text" name="level" value="{{ char['level'] }}">
+    <label for="">Gender:</label>
+    <input type="text" name="gender" value=" {{ char['gender'] }}">
+    <label for="">Class:</label>
+    <input type="text" name="classes" value="{{ char['classes'] }}">
+    <label for="">Race:</label>
+    <input type="text" name="race" value="{{ char['race'] }}">
+    <label for="">Faction:</label>
+    <input type="text" name="faction" value="{{ char['faction'] }}">
+    
+<img src="{{ char['img_url'] }}" alt="">
+<li></li>
+
+
+
+  <label for="">Image URL:</label>
+  <input type="text" name="img_url" value="{{ char['img_url'] }}">
+
+  <button>Update Character</button>
+</form>
+{% endblock %}

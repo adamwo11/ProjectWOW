@@ -1,6 +1,6 @@
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, session
 import requests
-from models.char import all_chars, create_char
+from models.char import all_chars, get_char, create_char, update_char, delete_char, like_char
 from services.session_info import current_user
 
 def get_char_from_api(realm, char_name):
@@ -9,28 +9,38 @@ def get_char_from_api(realm, char_name):
   return response
 
 def index():
-  char = all_chars()
-  return render_template('char/index.html', char=char, current_user=current_user)
+  chars = all_chars()
+  return render_template('chars/index.html', chars=chars, current_user=current_user())
 
 def new():
-  return render_template('char/generate.html')
+  return render_template('chars/generate.html')
 
 def create():
   char_name = request.form.get('name')
   realm = request.form.get('realm')
-  create_char(id, char_name, realm)
+  create_char(char_name, realm)
   return redirect('/')
 
-# def edit(id):
-#   char = get_char(id)
-#   return render_template('chars/edit.html', char=char)
+def edit(id):
+  char = get_char(id)
+  return render_template('chars/edit.html', char=char)
 
-# def update(id):
-#   name = request.form.get('name')
-#   image_url = request.form.get('image_url')
-#   update_char(id, name, image_url)
-#   return redirect('/')
+def update(id):
+  name = request.form.get('name')
+  realm= request.form.get('realm')
+  level= request.form.get('level')
+  img_url = request.form.get('img_url')
+  gender= request.form.get('gender')
+  classes= request.form.get('class')
+  race= request.form.get('race')
+  faction= request.form.get('faction')
+  update_char(id, name, realm, level, img_url, gender, classes, race, faction)
+  return redirect('/')
 
-# def delete(id):
-#   delete_char(id)
-#   return redirect('/')
+def delete(id):
+  delete_char(id)
+  return redirect('/')
+
+def like(id):
+  like_char(id, session['user_id'])
+  return redirect('/')
