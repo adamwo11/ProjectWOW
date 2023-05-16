@@ -5,7 +5,9 @@ from services.session_info import current_user
 
 def get_char_from_api(realm, name):
   # api_url = f'https://us.api.blizzard.com/profile/wow/character/{realm}/{name}?namespace=profile-us&locale=en_US&access_token=USWAvjnlORaReA2bL8QPt1HIfnrcDGRuCA'
- 
+  print('meow')
+  print(realm)
+  print(name)
   
   
   # response = requests.get(api_url).json()
@@ -1497,11 +1499,16 @@ def get_char_from_api(realm, name):
   return response 
 
 def character():
+  
   realm = request.args.get('realm')
   name = request.args.get('name')
+  print(realm)
+  print(name)
   char_info = get_char_from_api(realm, name)
-  return render_template('new_char.html', char_info=char_info)
+  return render_template('chars/new_char.html', char_info=char_info)
 # https://us.api.blizzard.com/profile/wow/character/frostmourne/plumbob?namespace=profile-us&locale=en_US&access_token=USWAvjnlORaReA2bL8QPt1HIfnrcDGRuCA
+
+
 def index():
   chars = all_chars()
   return render_template('chars/index.html', chars=chars, current_user=current_user())
